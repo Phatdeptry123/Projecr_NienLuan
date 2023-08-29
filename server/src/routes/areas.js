@@ -5,5 +5,7 @@ router.get("/", AreaController.findAll);
 router.delete("/:id", AreaController.deleteArea);
 router.post("/create", AreaController.createArea);
 router.put("/:id", AreaController.updateArea);
+router.get("/:area_slug", AreaController.showArea);
+
 
 module.exports = router;

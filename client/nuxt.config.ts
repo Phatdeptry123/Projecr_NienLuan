@@ -20,7 +20,7 @@ export default defineNuxtConfig({
       apiBase: 'http://localhost:3600'
     }
   },
-  
+  css: ['@fortawesome/fontawesome-svg-core/styles.css', '~/assets/main.css'],
   pinia: {
     autoImports: [
       // automatically imports `defineStore`
@@ -31,5 +31,6 @@ export default defineNuxtConfig({
   imports: {
     dirs: ['stores', 'services'],
   },
+ 
   ssr: false
 })

@@ -36,5 +36,13 @@ class AreaController {
       return res.status(500).send(error);
     }
   }
+  async showArea(req, res, next) {
+    try {
+      const records = await Area.findOne({ area_slug: req.params.area_slug });
+      return res.send(records);
+    } catch (error) {
+      return res.status(500).send(error);
+    }
+  }
 }
 module.exports = new AreaController();

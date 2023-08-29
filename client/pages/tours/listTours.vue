@@ -3,7 +3,7 @@
         <ul class="list-group">
             <div class="row mt-4">
                 <h2 class="col-6">Danh Sách Khóa Học</h2>
-                <div @click="navigateTo('/tours/addTour')" class="btn btn-success col-6">
+                <div @click="navigateTo('/areas/addArea')" class="btn btn-success col-6">
                     <nuxtLink class="nav-link active" aria-current="page" href="">Thêm Tour Mới</nuxtLink>
                 </div>
             </div>
@@ -15,7 +15,7 @@
                     <h4 class="">{{ i.tour_name }}</h4>
                 </div>
                 <div>
-                    <nuxtLink :to="`/tours/updateTour-${i.tour_slug}`" class="btn btn-primary">Sửa</nuxtLink>
+                    <nuxtLink :to="`/tours/updateTours-${i.tour_slug}`" class="btn btn-primary">Sửa</nuxtLink>
                     <button @click="deleteTour(i._id)" class="btn btn-danger">Xóa</button>
                 </div>
             </li>

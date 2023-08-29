@@ -1,50 +1,40 @@
-const Tour = require("../models/Tour.js");
+const Area = require("../models/area.js");
 const { mongooseToOpject } = require("../../util/mongoose.js");
 const { mutipleMongooseToOpject } = require("../../util/mongoose");
-
-class TourController {
-  async deleteTour(req, res, next) {
-    try {
-      const records = await Tour.deleteOne({ _id: req.params.id });
-      return res.send(records);
-    } catch (error) {
-      return res.status(500).send(error);
-    }
-  }
+class AreaController {
   async findAll(req, res, next) {
     try {
-      const records = await Tour.find();
+      const records = await Area.find();
       return res.send(records);
     } catch (error) {
       return res.status(500).send(error);
     }
   }
-  async showTour(req, res, next) {
+  async deleteArea(req, res, next) {
     try {
-      const records = await Tour.findOne({ tour_slug: req.params.tour_slug });
+      const records = await Area.deleteOne({ _id: req.params.id });
       return res.send(records);
     } catch (error) {
       return res.status(500).send(error);
     }
   }
-
-  async createTour(req, res, next) {
+  async createArea(req, res, next) {
     try {
       // req.body.tour_image = `https://codefresher.vn/wp-content/uploads/2021/06/Banner-05-KH-IT-Foundation-1024x1024.png`;
-      const tour = new Tour(req.body);
-      const records = await tour.save();
+      const area = new Area(req.body);
+      const records = await area.save();
       return res.send(records);
     } catch (error) {
       return res.status(500).send(error);
     }
   }
-  async updateTour(req, res, next) {
+  async updateArea(req, res, next) {
     try {
-      const records = await Tour.updateOne({ _id: req.params.id }, req.body);
+      const records = await Area.updateOne({ _id: req.params.id }, req.body);
       return res.send(records);
     } catch (error) {
       return res.status(500).send(error);
     }
   }
 }
-module.exports = new TourController();
+module.exports = new AreaController();

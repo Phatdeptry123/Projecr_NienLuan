@@ -43,8 +43,9 @@
                                             <div class="d-flex flex-row align-items-center mb-4">
                                                 <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                                 <div class="form-outline flex-fill mb-0">
-                                                    <input type="password" id="form3Example4c" class="form-control" />
-                                                    <label class="form-label" for="form3Example4c">Password</label>
+                                                    <input v-model="formData.password" type="password" id="form3Example4c"
+                                                        class="form-control" />
+                                                    <label class="form-label">Password</label>
                                                 </div>
                                             </div>
 
@@ -88,6 +89,7 @@ const addUser = async (event) => {
     event.preventDefault();
     const { data: users } = await useFetch(`${runtimeConfig.public.apiBase}/users/create`, { method: 'post', body: formData.value })
     alert("Thêm Thành Công")
+    navigateTo('/auth/Login')
 }
 
 </script>

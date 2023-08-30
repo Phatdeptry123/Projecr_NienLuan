@@ -2,7 +2,10 @@ const siteRouter = require("./site");
 const TourRouter = require("./tours");
 const AreaRouter = require("./areas");
 const UserRouter = require("./users");
+const LoginRouter = require("./login");
+
 function route(app) {
+  app.use("/login", LoginRouter);
   app.use("/test", (req, res, next) => {
     res.send("Hello World!");
   });

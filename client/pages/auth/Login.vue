@@ -18,13 +18,14 @@
                                         <p>Please login to your account</p>
 
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="form2Example11" class="form-control"
-                                                placeholder="Phone number or email address" />
+                                            <input v-model="users.username" type="text" id="form2Example11"
+                                                class="form-control" placeholder="Phone number or email address" />
                                             <label class="form-label" for="form2Example11">Username</label>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="form2Example22" class="form-control" />
+                                            <input v-model="users.password" type="password" id="form2Example22"
+                                                class="form-control" />
                                             <label class="form-label" for="form2Example22">Password</label>
                                         </div>
 
@@ -66,24 +67,20 @@
 
 <script setup>
 const runtimeConfig = useRuntimeConfig()
-const { data: users, refresh: refreshUsers } = await useFetch(`${runtimeConfig.public.apiBase}/users/`, { method: 'get' })
-
-const handleLogin = async (user) => {
+const users = ref({
+    username: '',
+    password: '',
+})
+const handleLogin = async (event) => {
+    event.preventDefault();
     try {
-        loading.value = true;
-        await useAuth.login(user);
-        useNotification.show("success", t("Login success!!."));
-        navigateTo("/");
-    } catch (error) {
-        if (error.message == "404") {
-            useNotification.show("error", t("Wrong username."));
-        } else if (error.message == "400") {
-            useNotification.show("error", t("Wrong password."));
-        } else {
-            useNotification.show("error", t("Can't login."));
+        const { data: usersData, error } = await useFetch(`${runtimeConfig.public.apiBase}/login/`, { method: 'post', body: users.value })
+        if (error) {
+            return
         }
-    } finally {
-        loading.value = false;
+        navigateTo('/')
+    } catch (error) {
+        console.log(error);
     }
 };
 </script>
